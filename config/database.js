@@ -1,17 +1,14 @@
 ﻿const mongoose = require('mongoose');
-require('dotenv').config();
 
 const connectDB = async () => {
     try {
-        const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/travelCompanionDB';
-        await mongoose.connect(mongoURI, {
+        await mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            maxPoolSize: 10,
         });
-        console.log(\MongoDB Connected: \\);
-    } catch (error) {
-        console.error('MongoDB connection error:', error);
+        console.log('MongoDB connected');
+    } catch (err) {
+        console.error('MongoDB connection error:', err);
         process.exit(1);
     }
 };
